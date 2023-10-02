@@ -1,0 +1,46 @@
+module GoogleTagManager {
+    function initializeBackend() {
+        if Srl.System.exec("mkdir -p /tmp/gtagmanager") != 0 {
+            Srl.System.fail(1, "GoogleTagManager: Could not create temp directory.\n");
+        }
+        def js: String =
+            "window.dataLayer = window.dataLayer || [];"
+            "function gtag(){ dataLayer.push(arguments); }"
+            "gtag('js', new Date());"
+            "function configureGoogleTagManager(id) { gtag('config', id); }"
+            "function pushGoogleTagEvent(json) { gtag(...JSON.parse(json)); }";
+        if !Srl.Fs.createFile("/tmp/gtagmanager/helpers.js", js.buf, js.getLength()) {
+            Srl.System.fail(1, "GoogleTagManager: Could not create helper JS file.\n");
+        }
+        WebPlatform.addAssetRoute(Srl.String("/gtagmanager/"), Srl.String("/tmp/gtagmanager/"));
+    }
+
+    function initializeFrontend(id: CharsPtr): Srl.SrdRef[Promises.Promise[Int]] {
+        return loadJsScript(String.format("https://www.googletagmanager.com/gtag/js?id=%s", id))
+            .then[Int](closure (Int, p: ref[Promises.Promise[Int]]) {
+                p.resolve(loadJsScript("/gtagmanager/helpers.js"));
+            }).then[Int](closure (Int, p: ref[Promises.Promise[Int]]) {
+                callCustomJsFn("configureGoogleTagManager", id);
+                p.resolve(0);
+            });
+    }
+
+    function pushEvent(eventName: CharsPtr, jsonArg: CharsPtr) {
+        def args: String = String.format("[\"event\", \"%s\", %s]", eventName, jsonArg);
+        callCustomJsFn("pushGoogleTagEvent", args);
+    }
+
+    function pushConversionEvent(id: String, conversionId: String, transactionId: String) {
+        def args: String = String.format(
+            "[\"event\", \"conversion\", {\"send_to\": \"%s/%s\", \"transaction_id\": \"%s\"}]",
+            escape(id).buf,
+            escape(conversionId).buf,
+            escape(transactionId).buf
+        );
+        callCustomJsFn("pushGoogleTagEvent", args);
+    }
+
+    function escape(str: String): String {
+        return str.replace("\\", "\\\\").replace("\n", "\\n").replace("\"", "\\\"");
+    }
+}

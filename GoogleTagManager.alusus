@@ -33,14 +33,10 @@ module GoogleTagManager {
     function pushConversionEvent(id: String, conversionId: String, transactionId: String) {
         def args: String = String.format(
             "[\"event\", \"conversion\", {\"send_to\": \"%s/%s\", \"transaction_id\": \"%s\"}]",
-            escape(id).buf,
-            escape(conversionId).buf,
-            escape(transactionId).buf
+            Json.escape(id).buf,
+            Json.escape(conversionId).buf,
+            Json.escape(transactionId).buf
         );
         callCustomJsFn("pushGoogleTagEvent", args);
-    }
-
-    function escape(str: String): String {
-        return str.replace("\\", "\\\\").replace("\n", "\\n").replace("\"", "\\\"");
     }
 }

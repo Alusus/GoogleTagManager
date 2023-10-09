@@ -21,6 +21,7 @@ Apm.importFile("Alusus/GoogleTagManager");
   * Srl.String
   * Srl.SrdRef
   * Promises
+  * Json
 
 * Initialize the server side of the library by calling this function **outside any endpoints**:
 

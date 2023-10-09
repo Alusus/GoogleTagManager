@@ -30,6 +30,7 @@ Apm.importFile("Alusus/GoogleTagManager");
   * `مـتم.نـص` (`Srl.String`)
   * `مـتم.سـندنا` (`Srl.SrdRef`)
   * `مـؤجلات` (`Promises`)
+  * `جـيسون` (`Json`)
 
 * قم بتهيئة جانب الخادم للمكتبة عن طريق استدعاء هذه الدالة خارج نهايات الملف:
 

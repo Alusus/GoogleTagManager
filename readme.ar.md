@@ -32,21 +32,23 @@ Apm.importFile("Alusus/GoogleTagManager");
   * `مـؤجلات` (`Promises`)
   * `جـيسون` (`Json`)
 
-* قم بتهيئة جانب الخادم للمكتبة عن طريق استدعاء هذه الدالة خارج نهايات الملف:
+* أضف الوحدة `مـدير_علامات_جوجل` (`GoogleTagManager`) إلى وحدات الخادم التي تبحث فيها مـنصة_ويب عن منافذ الخادم:
 
 <div dir=rtl>
 
 ```
-مـدير_علامات_جوجل.هيئ_الخادم()؛
+عرف وحدات_الخادم: { خـادمي، مـدير_علامات_جوجل }؛
+ابن_وشغل_الخادم[وحدات_الخادم](خيارات)؛
 ```
 
 </div>
 
 ```
-GoogleTagManager.initializeBackend();
+def serverModules: { MyServer, GoogleTagManager };
+buildAndRunServer[serverModules](options);
 ```
 
-* هيئ جانب الزبون داخل المنفذ المرئي:
+* هيئ الواجهة من المنفذ المرئي:
 
 <div dir=rtl>
 

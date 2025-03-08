@@ -23,10 +23,11 @@ Apm.importFile("Alusus/GoogleTagManager");
   * Promises
   * Json
 
-* Initialize the server side of the library by calling this function **outside any endpoints**:
+* Add module `GoogleTagManager` to the modules that WebPlatform will look for endpoints in:
 
 ```
-GoogleTagManager.initializeBackend();
+def serverModules: { MyServer, GoogleTagManager };
+buildAndRunServer[serverModules](options);
 ```
 
 * Initialize the frontend inside the UI endpoint:

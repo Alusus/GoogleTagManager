@@ -2,7 +2,6 @@
 
 عرف مـدير_علامات_جوجل: لقب GoogleTagManager؛
 @دمج وحدة مـدير_علامات_جوجل {
-    عرف هيئ_الخادم: لقب initializeBackend؛
     عرف هيئ_الواجهة: لقب initializeFrontend؛
     عرف ادفع_حدثا: لقب pushEvent؛
     عرف ادفع_حدث_إحالة: لقب pushConversionEvent؛

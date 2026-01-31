@@ -1,5 +1,5 @@
 # GoogleTagManager
-[[English]](readme.md)
+[[English]](README.md)
 
 مكتبة لتمكين استخدام مدير علامات جوجل (Google Tag Manager) من برامج الأسس. تم تصميم هذه المكتبة للعمل مع مـنصة_ويب.
 
@@ -76,4 +76,12 @@ await(GoogleTagManager.initializeFrontend("<account_id>"));
 ```
 GoogleTagManager.pushConversionEvent("<account_id>", "<conversion_id>", "<transaction_id>");
 ```
+
+---
+
+## الرخصة
+
+حقوق النشر © 2026 سرمد خالد عبد الله
+
+هذا المشروع مرخص بموجب رخصة غنو العمومية الصغرى الإصدار 3.0 (LGPL-3.0). راجع ملفات `COPYING` و `COPYING.LESSER` للحصول على التفاصيل.
 

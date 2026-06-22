@@ -1,4 +1,4 @@
-# GoogleTagManager
+# مـدير_علامات_جوجل (GoogleTagManager)
 [[English]](README.md)
 
 مكتبة لتمكين استخدام مدير علامات جوجل (Google Tag Manager) من برامج الأسس. تم تصميم هذه المكتبة للعمل مع مـنصة_ويب.
